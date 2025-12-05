@@ -392,14 +392,30 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
     animation: float 20s ease-in-out infinite;
+}
+
+.hero-bg-image.active {
+    opacity: 0.5;
+    z-index: 1;
 }
 
 .hero-overlay {
@@ -408,7 +424,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(10, 14, 26, 0.6) 0%, rgba(10, 14, 26, 0.8) 100%);
     z-index: 2;
 }
 
@@ -1221,27 +1237,40 @@ body {
 
 .owner-info {
     margin: 50px 0;
-    padding: 40px;
+    padding: 0;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
-    border-left: 3px solid var(--accent-color);
+    position: relative;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 0;
+    overflow: hidden;
+}
+
+.owner-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
     position: relative;
 }
 
-.owner-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
+.owner-photo img {
+    width: 100%;
     height: 100%;
-    background: var(--accent-color);
-    opacity: 0.3;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.owner-info:hover .owner-photo img {
+    transform: scale(1.05);
 }
 
 .owner-content {
+    padding: 40px;
     position: relative;
     z-index: 1;
+    border-left: 3px solid var(--accent-color);
 }
 
 .owner-name {
@@ -1974,8 +2003,19 @@ body {
     }
 
     .owner-info {
-        padding: 30px 20px;
+        grid-template-columns: 1fr;
         margin: 40px 0;
+    }
+    
+    .owner-photo {
+        min-height: 300px;
+        width: 100%;
+    }
+    
+    .owner-content {
+        padding: 30px 20px;
+        border-left: none;
+        border-top: 3px solid var(--accent-color);
     }
 
     .owner-name {

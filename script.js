@@ -135,12 +135,34 @@ counterElements.forEach(el => {
     counterObserver.observe(el);
 });
 
+// Hero Image Slider
+const heroImages = document.querySelectorAll('.hero-bg-image');
+let currentImageIndex = 0;
+
+function changeHeroImage() {
+    if (heroImages.length === 0) return;
+    
+    // Remove active class from current image
+    heroImages[currentImageIndex].classList.remove('active');
+    
+    // Move to next image
+    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+    
+    // Add active class to next image
+    heroImages[currentImageIndex].classList.add('active');
+}
+
+// Change image every 5 seconds
+if (heroImages.length > 0) {
+    setInterval(changeHeroImage, 5000);
+}
+
 // Parallax effect for hero background
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-bg-image');
-    if (heroBackground) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+    const activeImage = document.querySelector('.hero-bg-image.active');
+    if (activeImage) {
+        activeImage.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
 
