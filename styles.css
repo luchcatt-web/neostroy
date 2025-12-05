@@ -2003,19 +2003,8 @@ body {
     }
 
     .owner-info {
-        grid-template-columns: 1fr;
-        margin: 40px 0;
-    }
-    
-    .owner-photo {
-        min-height: 300px;
-        width: 100%;
-    }
-    
-    .owner-content {
         padding: 30px 20px;
-        border-left: none;
-        border-top: 3px solid var(--accent-color);
+        margin: 40px 0;
     }
 
     .owner-name {
